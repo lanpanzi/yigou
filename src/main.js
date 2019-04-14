@@ -6,6 +6,10 @@ import router from './router'
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
 
+// 引入requests下的所有接口
+import * as $http from './requests'
+Vue.prototype.$http = $http
+
 Vue.use(iView)
 
 Vue.config.productionTip = false
