@@ -12,7 +12,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="less">
 /* 清除默认样式 */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -41,6 +41,7 @@ footer, header, hgroup, menu, nav, section {
 a{text-decoration: none;color:#000;}
 body {
   line-height: 1;  
+  background-color: #f5f5f5;
 }
 ol, ul {
   list-style: none;

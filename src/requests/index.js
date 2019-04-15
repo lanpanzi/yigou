@@ -48,3 +48,15 @@ ajax.interceptors.response.use(res => {
 export const getCarouselData = () => {
   return ajax.get('/api/v1/carousel')
 }
+// 获取首页活动数据
+export const getActivityData = () => {
+  return ajax.get('/api/v1/activity')
+}
+// 获取首页广告数据
+export const getBannerData = () => {
+  return ajax.get('/api/v1/banner')
+}
+// 获取首页匠心·原创s数据
+export const getOriginalData = () => {
+  return ajax.get('/api/v1/original')
+}
