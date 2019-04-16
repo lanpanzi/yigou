@@ -2,17 +2,17 @@ import Head from '@/components/Head.vue'
 import Foot from '@/components/Foot.vue'
 // 按需加载
 const Home = () => 
-  import('@/pages/Home.vue')
+  import('@/pages/Home/Home.vue')
 const Cake = () => 
-  import('@/pages/Cake.vue')
+  import('@/pages/Cake/Cake.vue')
 const Bread = () => 
-  import('@/pages/Bread.vue')
+  import('@/pages/Bread/Bread.vue')
 const IceCream = () => 
-  import('@/pages/IceCream.vue')
+  import('@/pages/IceCream/IceCream.vue')
 const Tea = () => 
-  import('@/pages/Tea.vue')
+  import('@/pages/Tea/Tea.vue')
 const About = () => 
-  import('@/pages/About.vue')
+  import('@/pages/About/About.vue')
 
 const routes =  [
   { 
