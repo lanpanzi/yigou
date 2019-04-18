@@ -2,7 +2,7 @@
   <div class="Head">
     <Layout>
       <div class="layout">
-        <Header :style="{position: 'fixed', width: '100%', background: '#fff', padding: '0'}">
+        <Header class="layout-header">
           <Menu mode="horizontal" theme="light" :active-name="selected" @on-select="selectMenuItem">
             <div class="layout-logo">
               <img src="@/assets/logo.png" alt="" />
@@ -44,7 +44,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .Head {
   margin-bottom: 60px;
   .layout{
@@ -53,8 +53,17 @@ export default {
     position: relative;
     border-radius: 4px;
     overflow: hidden;
+    &-header {
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      z-index: 9999;
+      width: 100%;
+      height: 65px; 
+      background: #fff; 
+      padding: 3px 0;
+    }
     &-logo {
-      width: auto;
       height: 48px;
       border-radius: 3px;
       float: left;

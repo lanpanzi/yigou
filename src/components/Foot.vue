@@ -12,7 +12,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .Foot {
   .layout{
     border: 1px solid #d7dde4;
@@ -22,6 +22,7 @@ export default {
     overflow: hidden;
     &-footer-center {
       text-align: center;
+      background-color: #fff;
     }
   }
 }
