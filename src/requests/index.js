@@ -23,9 +23,9 @@ ajax.interceptors.request.use(config => {
             h('div', 'Loading')
         ])
     }
-})
+  })
   return config
-}, error => {
+  }, error => {
   // 对请求错误做些什么
   return Promise.reject(error)
 })
@@ -39,7 +39,7 @@ ajax.interceptors.response.use(res => {
     Message.info('数据请求超时')
   }
   return res
-}, error => {
+  }, error => {
   // 对响应错误做点什么
   return Promise.reject(error)
 })
@@ -47,4 +47,32 @@ ajax.interceptors.response.use(res => {
 // 获取首页轮播图数据
 export const getCarouselData = () => {
   return ajax.get('/api/v1/carousel')
+}
+// 获取首页活动数据
+export const getActivityData = () => {
+  return ajax.get('/api/v1/activity')
+}
+// 获取首页广告数据
+export const getBannerData = () => {
+  return ajax.get('/api/v1/banner')
+}
+// 获取首页列表标题数据
+export const getListTopData = () => {
+  return ajax.get('/api/v1/listTop')
+}
+// 获取首页匠心·原创数据
+export const getOriginalData = () => {
+  return ajax.get('/api/v1/original')
+}
+// 获取首页贝式·严选数据
+export const getStrictData = () => {
+  return ajax.get('/api/v1/strict')
+}
+// 获取首页网红爆款数据
+export const getHotData = () => {
+  return ajax.get('/api/v1/hot')
+}
+// 获取首页猜您喜欢数据
+export const getLoveData = () => {
+  return ajax.get('/api/v1/love')
 }
