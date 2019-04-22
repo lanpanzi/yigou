@@ -46,7 +46,7 @@ export default {
 
 <style lang="less" scoped>
 .Head {
-  margin-bottom: 60px;
+  margin-bottom: 63px;
   .layout{
     border: 1px solid #d7dde4;
     background: #f5f7f9;
@@ -62,6 +62,9 @@ export default {
       height: 65px; 
       background: #fff; 
       padding: 3px 0;
+      .ivu-menu {
+        padding: 0 6%;
+      }
     }
     &-logo {
       height: 48px;
@@ -69,7 +72,7 @@ export default {
       float: left;
       position: relative;
       top: 4px;
-      left: 16px;
+      left: 0;
       img {
         height: 100%;
       }
@@ -79,7 +82,7 @@ export default {
       margin-left: 24px;
     }
     &-search {
-      width: 19%;
+      width: 24%;
       float: left;
       position: relative;
       top: 12px;

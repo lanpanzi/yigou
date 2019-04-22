@@ -2,7 +2,7 @@
   <div class="Home">
     <!-- 轮播图 -->
     <div class="Home-Carousel">
-      <Carousel autoplay v-model="value" loop>
+      <Carousel autoplay v-model="value" trigger="hover" loop>
         <CarouselItem
           v-for="carouselItem in carousel"
           :key="carouselItem.id">

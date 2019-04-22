@@ -27,9 +27,6 @@ export default {
       bordered: false,
       padding: 0
     }
-  },
-  created() {
-    console.log(this.$props)
   }
 }
 </script>

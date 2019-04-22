@@ -28,7 +28,7 @@ const routes =  [
     components: {
       head: Head,
       main: Home,
-      foot: Foot 
+      foot: Foot
     },
     meta: {
       isNav: true,

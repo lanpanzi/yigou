@@ -3,6 +3,8 @@
     <router-view name="head"></router-view>
     <router-view name="main"></router-view>
     <router-view name="foot"></router-view>
+    
+    <!-- <BackTop :right="10"></BackTop> -->
   </div>
 </template>
 

@@ -76,3 +76,19 @@ export const getHotData = () => {
 export const getLoveData = () => {
   return ajax.get('/api/v1/love')
 }
+// 获取蛋糕商品列表数据
+export const getCakeListData = () => {
+  return ajax.get('/api/v1/cakeList')
+}
+// 获取面包商品列表数据
+export const getBreadListData = () => {
+  return ajax.get('/api/v1/breadList')
+}
+// 获取冰淇淋商品列表数据
+export const getIceCreamListData = () => {
+  return ajax.get('/api/v1/iceCreamList')
+}
+// 获取咖啡下午茶商品列表数据
+export const getTeaListData = () => {
+  return ajax.get('/api/v1/teaList')
+}
