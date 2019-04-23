@@ -2,7 +2,7 @@
   <div class="list-wrap">
     <Card :bordered="bordered" :padding="padding">
         <div class="list-item-top">
-          <router-link to=""><img :src="listItem.img" alt="" /></router-link>
+          <router-link :to="`/detail/${listItem.id}`"><img :src="listItem.img" alt="" /></router-link>
         </div>
         <div class="list-item-bottom">
           <div class="list-item-name">{{ listItem.name }}</div>
