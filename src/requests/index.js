@@ -92,3 +92,15 @@ export const getIceCreamListData = () => {
 export const getTeaListData = () => {
   return ajax.get('/api/v1/teaList')
 }
+// 获取详情商品信息数据
+export const getProductInfoData = (id) => {
+  return ajax.get('/api/v1/productInfo?productID='+ id)
+}
+// 获取详情商品详情数据
+export const getProductDetailData = (id) => {
+  return ajax.get('/api/v1/productDetail?productID='+ id)
+}
+// 获取详情商品评价数据
+export const getProductEvaluationData = (id) => {
+  return ajax.get('/api/v1/productEvaluation?productID='+ id)
+}

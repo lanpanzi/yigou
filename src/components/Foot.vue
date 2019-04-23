@@ -13,6 +13,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import '../theme/index.less';
+
 .Foot {
   .layout{
     border: 1px solid #d7dde4;
@@ -22,7 +24,8 @@ export default {
     overflow: hidden;
     &-footer-center {
       text-align: center;
-      background-color: #fff;
+      background-color: @primary-color;
+      color: #fff;
     }
   }
 }

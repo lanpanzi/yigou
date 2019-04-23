@@ -1,5 +1,6 @@
 import Head from '@/components/Head.vue'
 import Foot from '@/components/Foot.vue'
+import Detail from '@/components/Detail.vue'
 // 按需加载
 const Home = () => 
   import('@/pages/Home/Home.vue')
@@ -98,6 +99,18 @@ const routes =  [
     meta: {
       isNav: true,
       navTitle: '关于我们'
+    }
+  },
+  {
+    path: '/detail/:id',
+    name: 'detail',
+    components: {
+      head: Head,
+      main: Detail,
+      foot: Foot
+    },
+    meta: {
+      isNav: false
     }
   }
 ]
