@@ -14,6 +14,8 @@ const Tea = () =>
   import('@/pages/Tea/Tea.vue')
 const About = () => 
   import('@/pages/About/About.vue')
+const cart = () => 
+  import('@/pages/Cart/Cart.vue')
 
 const routes =  [
   { 
@@ -107,6 +109,18 @@ const routes =  [
     components: {
       head: Head,
       main: Detail,
+      foot: Foot
+    },
+    meta: {
+      isNav: false
+    }
+  },
+  {
+    path: '/cart',
+    name: 'cart',
+    components: {
+      head: Head,
+      main: cart,
       foot: Foot
     },
     meta: {
