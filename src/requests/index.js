@@ -104,3 +104,7 @@ export const getProductDetailData = (id) => {
 export const getProductEvaluationData = (id) => {
   return ajax.get('/api/v1/productEvaluation?productID='+ id)
 }
+// 购物车热销商品推荐数据
+export const getCartRecommendationData = () => {
+  return ajax.get('/api/v1/recommendation')
+}
