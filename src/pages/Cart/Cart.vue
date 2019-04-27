@@ -2,29 +2,46 @@
   <div class="Cart">
     <!-- Cart-Wrap -->
     <div class="Cart-Wrap">
-      <!-- Full TODO: v-if="productInfo" -->
-      <div class="Cart-Wrap-Full">
-        <Table disabled-hover 
-        no-data-text="你的购物车里还没有商品" 
-        :columns="columns" 
-        :data="productInfo"
-        tooltip="light">
-          <template slot-scope="{ row }" slot="name">
-            <strong>{{ row.name }}</strong>
-          </template>
-          <template slot-scope="{ row, index }" slot="amount">
-            <Input v-model="amount" size="small" style="text-align: center">
-              <Button slot="prepend" type="primary" icon="ios-remove" size="small" @click="add(index)"></Button>
-              <Button slot="append" type="primary" icon="ios-add" size="small" @click="remove(index)"></Button>
-            </Input>
-          </template>
-          <template slot-scope="{ row, index }" slot="action">
-            <Button type="primary" size=small @click.prevent="deleteItem(index)">删除</Button>
-          </template>
-        </Table>
+      <!-- Full -->
+      <div class="Cart-Wrap-Full" v-if="productInfo.length !== 0">
+        <div class="Cart-Wrap-Full-Header">
+          <Row type="flex" justify="space-around">
+            <Col span="1"><Checkbox></Checkbox></Col>
+            <Col span="5">商品</Col>
+            <Col span="1">单价</Col>
+            <Col span="3">数量</Col>
+            <Col span="1">金额</Col>
+            <Col span="1">操作</Col>
+          </Row>
+        </div>
+        <div class="Cart-Wrap-Full-Body">
+          <div class="Cart-Wrap-Full-Body-Item"
+          v-for="product in productInfo"
+          :key="product.id">
+            <Row type="flex" justify="space-around" align="middle">
+              <Col span="1"><Checkbox></Checkbox></Col>
+              <Col span="5">
+                <Row type="flex" justify="center" align="middle">
+                  <Col class="img"><img :src="product.img" alt="" /></Col>
+                  <Col class="name">{{ product.name }}</Col>
+                </Row>
+              </Col>
+              <Col span="1"><span>￥</span>{{ product.price }}</Col>
+              <Col span="3">
+                <Row type="flex" justify="center" align="middle">
+                  <Col><Icon type="ios-add-circle-outline" size="20" /></Col>
+                  <Col class="amount">{{ product.amount }}</Col>
+                  <Col><Icon type="ios-remove-circle-outline" size="20" /></Col>
+                </Row>
+              </Col>
+              <Col span="1" class="subTotal"><span>￥</span>{{ product.price * product.amount }}</Col> 
+              <Col span="1"><Icon type="ios-close-circle-outline" size="24" /></Col>
+            </Row>
+          </div>
+        </div>
       </div>
       <!-- Empty -->
-      <!-- <div class="Cart-Wrap-Empty" v-else>
+      <div class="Cart-Wrap-Empty" v-else>
         <Row type="flex" justify="center" align="middle" class="Cart-Wrap-Empty-Icon">
           <Col><Icon type="ios-cart-outline" size="108" color="#26cad3" /></Col>
         </Row>
@@ -34,7 +51,7 @@
         <Row type="flex" justify="center" align="middle" class="Cart-Wrap-Empty-ToShop">
           <Col><router-link to="/cake">去购物>></router-link></Col>
         </Row>
-      </div> -->
+      </div>
       <!-- Recommendation -->
       <div class="Cart-Wrap-Recommendation">
         <div class="Cart-Wrap-Recommendation-title">
@@ -63,54 +80,20 @@ export default {
   data() {
     return {
       recommendation: [],
-      columns: [
-          {
-            type: 'selection',
-            width: 60,
-            align: 'center'
-          },
-          {
-            title: '商品',
-            slot: 'name',
-            align: 'center'
-          },
-          {
-            title: '单价',
-            key: 'price',
-            align: 'center'
-          },
-          {
-            title: '数量',
-            slot: 'amount',
-            width: 150,
-            align: 'center'
-          },
-          {
-            title: '金额',
-            key: 'subTotal',
-            align: 'center'
-          },
-          {
-            title: '操作',
-            slot: 'action',
-            width: 150,
-            align: 'center'
-          }
-      ],
       productInfo: [
-          {
-              name: 'John Brown',
-              price: 18,
-              subTotal: 18
-          }
-      ],
-      amount: '1'
+        {
+          "id": "630000201107044862",
+          "img": "http://dummyimage.com/1366x910/f2b479&text=img",
+          "name": "张参音他象五本活存",
+          "price": 207.74,
+          "sales": 1615,
+          "amount": 1
+        }
+      ]
     }
   },
   methods: {
-    deleteItem(index) {
-      this.productInfo.splice(index, 1);
-    }
+    
   },
   components: {
     listItem
@@ -131,13 +114,43 @@ export default {
   @import '../../theme/index.less';
 
   .Cart {
-    background-color: #f8f8f8;
     &-Wrap {
       padding: 0 6% @division;
+      background-color: #fff;
       &-Full {
-        padding-top: @division;
+        text-align: center;
+        padding: @division 0;
+        &-Header {
+          padding: 8px 0;
+          background-color: #f9f9f9;
+          font-size: 12px;
+          color: #000;
+        }
+        &-Body {
+          margin-top: @division / 2;
+          &-Item {
+            padding: 8px 0;
+            color: #000;
+            font-size: 14px;
+            .img {
+              width: 80px;
+              img {
+                width: 100%;
+              }
+            }
+            .name {
+              margin-left: 8px;
+            }
+            .amount {
+              padding: 0 16px;
+            }
+            .subTotal {
+              color: #ff3300;
+            }
+          } 
+        }
       }
-      /* &-Empty {
+      &-Empty {
         margin-top: @division;
         padding:  144px 0 196px;
         &-Desc, &-ToShop {
@@ -146,7 +159,7 @@ export default {
         &-ToShop {
           color: @primary-color;
         }
-      } */
+      }
       &-Recommendation {
         &-title {
           color: @primary-color;
