@@ -14,8 +14,10 @@ const Tea = () =>
   import('@/pages/Tea/Tea.vue')
 const About = () => 
   import('@/pages/About/About.vue')
-const cart = () => 
+const Cart = () => 
   import('@/pages/Cart/Cart.vue')
+const Login = () => 
+  import('@/pages/Login/Login.vue')
 
 const routes =  [
   { 
@@ -120,7 +122,19 @@ const routes =  [
     name: 'cart',
     components: {
       head: Head,
-      main: cart,
+      main: Cart,
+      foot: Foot
+    },
+    meta: {
+      isNav: false
+    }
+  },
+  {
+    path: '/login',
+    name: 'login',
+    components: {
+      head: Head,
+      main: Login,
       foot: Foot
     },
     meta: {
