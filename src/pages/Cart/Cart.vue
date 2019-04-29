@@ -4,6 +4,7 @@
     <div class="Cart-Wrap">
       <!-- Full -->
       <div class="Cart-Wrap-Full" v-if="productInfo.length !== 0">
+        <!-- Header -->
         <div class="Cart-Wrap-Full-Header">
           <Row type="flex" justify="space-around">
             <Col span="1"><Checkbox></Checkbox></Col>
@@ -14,6 +15,7 @@
             <Col span="1">操作</Col>
           </Row>
         </div>
+        <!-- Body -->
         <div class="Cart-Wrap-Full-Body">
           <div class="Cart-Wrap-Full-Body-Item"
           v-for="product in productInfo"
@@ -29,15 +31,43 @@
               <Col span="1"><span>￥</span>{{ product.price }}</Col>
               <Col span="3">
                 <Row type="flex" justify="center" align="middle">
-                  <Col><Icon type="ios-add-circle-outline" size="20" /></Col>
+                  <Col style="cursor: pointer"><Icon type="ios-add-circle-outline" size="22" color="#000" /></Col>
                   <Col class="amount">{{ product.amount }}</Col>
-                  <Col><Icon type="ios-remove-circle-outline" size="20" /></Col>
+                  <Col style="cursor: pointer"><Icon type="ios-remove-circle-outline" size="22" color="#000" /></Col>
                 </Row>
               </Col>
               <Col span="1" class="subTotal"><span>￥</span>{{ product.price * product.amount }}</Col> 
-              <Col span="1"><Icon type="ios-close-circle-outline" size="24" /></Col>
+              <Col span="1" style="cursor: pointer"><Icon type="ios-close-circle-outline" size="24" color="#000"/></Col>
             </Row>
           </div>
+        </div>
+        <!-- Total -->
+        <div class="Cart-Wrap-Total">
+          <Row>
+            <Col span="4" style="cursor: pointer">
+              <Row type="flex" align="middle">
+                <Col><Icon type="ios-trash" size="28" color="#000" /></Col>
+                <Col><span>全部清除</span></Col>
+              </Row>
+            </Col>
+            <Col offset="16" span="4">
+              <Row class="total-product" type="flex" justify="space-between" align="middle">
+                <Col>商品总计</Col>
+                <Col><span>￥</span></Col>
+              </Row>
+              <Row class="total-payment" type="flex" justify="space-between" align="middle">
+                <Col>应付总额</Col>
+                <Col style="font-weight: 600;font-size: 18px"><span>￥</span></Col>
+              </Row>
+            </Col>
+          </Row>
+        </div>
+        <!-- Btn -->
+        <div class="Cart-Wrap-Button">
+          <Row>
+            <Col offset="15" span="4"><Button style="font-size: 18px;color: #000" long>继续购物</Button></Col>
+            <Col offset="1" span="4"><Button style="font-size: 18px" type="primary" long>下单结算</Button></Col>
+          </Row>
         </div>
       </div>
       <!-- Empty -->
@@ -128,6 +158,7 @@ export default {
         }
         &-Body {
           margin-top: @division / 2;
+          background-color: #f9f9f9;
           &-Item {
             padding: 8px 0;
             color: #000;
@@ -158,6 +189,21 @@ export default {
         }
         &-ToShop {
           color: @primary-color;
+        }
+      }
+      &-Total {
+        margin: @division 0;
+        padding: 15px @division;
+        background-color: #f9f9f9;
+        font-size: 14px;
+        .total {
+          &-product, &-payment {
+            font-size: 12px;
+          }
+          &-payment {
+            color: #000;
+            margin-top: 24px;
+          }
         }
       }
       &-Recommendation {
