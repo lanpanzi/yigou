@@ -18,6 +18,21 @@
             <div class="layout-search">
               <Input search enter-button="搜索" placeholder="请输入关键词" />
             </div>
+            <div class="layout-cart">
+              <router-link to="/cart">
+                <Badge type="primary" :count="5" :offset="[16, 5]">
+                  <Icon type="ios-cart-outline" size="32" color="#757575" style="font-weight: 600" />
+                </Badge>
+              </router-link>
+            </div>
+            <div class="layout-userState">
+              <div class="not-login">
+                <router-link to="/login">登录</router-link>
+                <span>/</span>
+                <router-link to="register">注册</router-link>
+              </div>
+              <div class="login"></div>
+            </div>
           </Menu>
         </Header>
       </div>
@@ -45,6 +60,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import '../theme/index.less';
+
 .Head {
   margin-bottom: 63px;
   .layout{
@@ -87,6 +104,21 @@ export default {
       position: relative;
       top: 12px;
       left: 16px;
+    }
+    &-cart {
+      float: right;
+    }
+    &-userState {
+      float: right;
+      margin-right: 16px;
+      .not-login {
+        a {
+          color: #515a6e;
+          &:hover {
+            color: @primary-color;
+          }
+        }
+      }
     }
   }
 }

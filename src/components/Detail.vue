@@ -130,7 +130,6 @@ export default {
         }
       }
       &-intro {
-        border: 1px solid red;
         padding-left: 4%;
         .name, .price {
           font-family: 'microsoft yahei';
