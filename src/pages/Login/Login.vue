@@ -4,28 +4,29 @@
       <Col offset="16" span="7" class="Login-box">
         <div class="Login-container">
           <div class="Login-header">
-            <p>欢迎登录</p>
+            <p>用户登录</p>
           </div>
           <div class="form-box">
             <Form ref="formInline" :model="formDate" :rules="ruleInline">
               <FormItem prop="username">
-                  <Input type="text" v-model="formDate.username" clearable size="large" placeholder="用户名">
-                      <Icon type="ios-person" size="18" slot="prepend" />
-                  </Input>
+                  <Input type="text" v-model="formDate.username" clearable placeholder="请输入您的账号"></Input>
               </FormItem>
               <FormItem prop="password">
-                  <Input type="password" v-model="formDate.password" clearable size="large" placeholder="密码">
-                      <Icon type="ios-lock-outline" size="18" slot="prepend" />
-                  </Input>
+                  <Input type="password" v-model="formDate.password" clearable placeholder="输入密码"></Input>
               </FormItem>
               <FormItem>
-                <Row type="flex" justify="space-between">
-                  <Col><router-link to="">忘记密码?</router-link></Col>
-                  <Col><router-link to="">注册账号</router-link></Col>
+                  <Button type="primary" long>登录</Button>
+              </FormItem>
+              <FormItem>
+                <Row>
+                  <Col span="6"><Checkbox> 记住我</Checkbox></Col>
+                  <Col offset="9" span="9">
+                    <Row type="flex" justify="space-between">
+                      <Col><router-link to="">忘记密码</router-link></Col>
+                      <Col><router-link to="/register">去注册</router-link></Col>
+                    </Row>
+                  </Col>
                 </Row>
-              </FormItem>
-              <FormItem>
-                  <Button type="primary" size="large" long>登录</Button>
               </FormItem>
           </Form>
           </div>
