@@ -18,6 +18,8 @@ const Cart = () =>
   import('@/pages/Cart/Cart.vue')
 const Login = () => 
   import('@/pages/Login/Login.vue')
+const Register = () =>
+  import('@/pages/Register/Register.vue')
 
 const routes =  [
   { 
@@ -135,6 +137,18 @@ const routes =  [
     components: {
       head: Head,
       main: Login,
+      foot: Foot
+    },
+    meta: {
+      isNav: false
+    }
+  },
+  {
+    path: '/register',
+    name: 'register',
+    components: {
+      head: Head,
+      main: Register,
       foot: Foot
     },
     meta: {
