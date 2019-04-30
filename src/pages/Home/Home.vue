@@ -29,7 +29,7 @@
       <!-- 广告 -->
       <homeBanner></homeBanner>
       <!-- 匠心·原创 -->
-      <div class="Home-Original">
+      <div class="Home-Original" v-if="listTop[0]">
         <homeListTop :title="listTop[0].title" :id="listTop[0].id"></homeListTop>
         <div class="Home-Original-bottom">
           <div class="recommendation">
@@ -53,7 +53,7 @@
       <!-- 广告 -->
       <homeBanner style="margin-top: 1.5%;"></homeBanner>
       <!-- 贝式·严选 -->
-      <div class="Home-Strict">
+      <div class="Home-Strict" v-if="listTop[1]">
         <homeListTop :title="listTop[1].title" :id="listTop[1].id"></homeListTop>
         <div class="Home-Strict-bottom">
           <div class="recommendation">
@@ -77,7 +77,7 @@
       <!-- 广告 -->
       <homeBanner></homeBanner>
       <!-- 网红爆款 -->
-      <div class="Home-Hot">
+      <div class="Home-Hot" v-if="listTop[2]">
         <homeListTop :title="listTop[2].title" :id="listTop[2].id"></homeListTop>
         <div class="Home-Hot-bottom">
           <div class="list">
@@ -90,7 +90,7 @@
         </div>
       </div>
       <!-- 猜您喜欢 -->
-      <div class="Home-Love">
+      <div class="Home-Love" v-if="listTop[3]">
         <homeListTop :title="listTop[3].title" :id="listTop[3].id"></homeListTop>
         <div class="list">
           <div class="Home-Hot-bottom">
@@ -146,7 +146,7 @@ export default {
       .catch(error => {
         console.log(error)
       })
-
+    
     this.$http.getListTopData()
       .then(res => {
         this.listTop = res.listTop

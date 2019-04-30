@@ -3,7 +3,7 @@
     <div class="Detail-Wrap">
       <Row class="productInfo">
         <Col class="productInfo-show" span="14">
-          <Row class="bigImg" v-if="productInfo.img[imgIndex]"><img :src="productInfo.img[imgIndex]" alt=""></Row>
+          <Row class="bigImg" v-if="productInfo.img"><img :src="productInfo.img[imgIndex]" alt=""></Row>
           <Row class="smallImg" type="flex" justify="space-between">
             <Col 
               v-for="(item, index) in productInfo.img"
@@ -44,7 +44,7 @@
           v-for="evaluationItem in productEvaluation"
           :key="evaluationItem.uid">
             <Col span="6">
-              <Row type="flex" justify="flex-start" align="middle">
+              <Row type="flex" align="middle">
                 <Col><Avatar :src="evaluationItem.avatar" size="large" /></Col>
                 <Col style="margin-left: 8px">
                   <p class="username">{{ evaluationItem.name }}</p>

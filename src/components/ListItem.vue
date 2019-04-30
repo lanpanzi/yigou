@@ -33,6 +33,9 @@ export default {
 
 <style lang="less" scoped>
 .list {
+  &-wrap {
+    text-align: center;
+  }
   &-item {
     &-top {
       img {
