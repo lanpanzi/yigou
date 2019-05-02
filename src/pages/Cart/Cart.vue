@@ -3,11 +3,11 @@
     <!-- Cart-Wrap -->
     <div class="Cart-Wrap">
       <!-- Full -->
-      <div class="Cart-Wrap-Full" v-if="productInfo.length !== 0">
+      <div class="Cart-Wrap-Full" v-if="cart.length !== 0">
         <!-- Header -->
         <div class="Cart-Wrap-Full-Header">
           <Row type="flex" justify="space-around">
-            <Col span="1"><Checkbox></Checkbox></Col>
+            <Col span="1"><Checkbox v-model="checkAll" @click.prevent.native="changeCheckAll"></Checkbox></Col>
             <Col span="5">商品</Col>
             <Col span="1">单价</Col>
             <Col span="3">数量</Col>
@@ -17,29 +17,10 @@
         </div>
         <!-- Body -->
         <div class="Cart-Wrap-Full-Body">
-          <div class="Cart-Wrap-Full-Body-Item"
-          v-for="product in productInfo"
-          :key="product.id">
-            <Row type="flex" justify="space-around" align="middle">
-              <Col span="1"><Checkbox></Checkbox></Col>
-              <Col span="5">
-                <Row type="flex" justify="center" align="middle">
-                  <Col class="img"><img :src="product.img" alt="" /></Col>
-                  <Col class="name">{{ product.name }}</Col>
-                </Row>
-              </Col>
-              <Col span="1"><span>￥</span>{{ product.price }}</Col>
-              <Col span="3">
-                <Row type="flex" justify="center" align="middle">
-                  <Col style="cursor: pointer"><Icon type="ios-add-circle-outline" size="22" color="#000" /></Col>
-                  <Col class="amount">{{ product.amount }}</Col>
-                  <Col style="cursor: pointer"><Icon type="ios-remove-circle-outline" size="22" color="#000" /></Col>
-                </Row>
-              </Col>
-              <Col span="1" class="subTotal"><span>￥</span>{{ product.price * product.amount }}</Col> 
-              <Col span="1" style="cursor: pointer"><Icon type="ios-close-circle-outline" size="24" color="#000"/></Col>
-            </Row>
-          </div>
+          <cartItem 
+          v-for="cartItem in cart"
+          :key="cartItem.id"
+          :cartItem="cartItem"></cartItem>
         </div>
         <!-- Total -->
         <div class="Cart-Wrap-Total">
@@ -53,11 +34,11 @@
             <Col offset="16" span="4">
               <Row class="total-product" type="flex" justify="space-between" align="middle">
                 <Col>商品总计</Col>
-                <Col><span>￥</span></Col>
+                <Col><span>￥</span>{{ total }}</Col>
               </Row>
               <Row class="total-payment" type="flex" justify="space-between" align="middle">
                 <Col>应付总额</Col>
-                <Col style="font-weight: 600;font-size: 18px"><span>￥</span></Col>
+                <Col style="font-weight: 600;font-size: 18px"><span>￥</span>{{ total }}</Col>
               </Row>
             </Col>
           </Row>
@@ -103,30 +84,27 @@
 </template>
 
 <script>
-import listItem from '@/components/ListItem'
+import { mapState, mapMutations, mapGetters } from 'vuex'
 
+import listItem from '@/components/ListItem'
+import cartItem from '@/components/CartItem'
 export default {
   name: 'cart',
   data() {
     return {
-      recommendation: [],
-      productInfo: [
-        {
-          "id": "630000201107044862",
-          "img": "http://dummyimage.com/1366x910/f2b479&text=img",
-          "name": "张参音他象五本活存",
-          "price": 207.74,
-          "sales": 1615,
-          "amount": 1
-        }
-      ]
+      recommendation: []
     }
   },
   methods: {
-    
+    ...mapMutations(['changeCheckAll'])
+  },
+  computed: {
+    ...mapState(['cart', 'checkAll']),
+    ...mapGetters(['total'])
   },
   components: {
-    listItem
+    listItem,
+    cartItem
   },
   created() {
     this.$http.getCartRecommendationData()
@@ -159,26 +137,6 @@ export default {
         &-Body {
           margin-top: @division / 2;
           background-color: #f9f9f9;
-          &-Item {
-            padding: 8px 0;
-            color: #000;
-            font-size: 14px;
-            .img {
-              width: 80px;
-              img {
-                width: 100%;
-              }
-            }
-            .name {
-              margin-left: 8px;
-            }
-            .amount {
-              padding: 0 16px;
-            }
-            .subTotal {
-              color: #ff3300;
-            }
-          } 
         }
       }
       &-Empty {

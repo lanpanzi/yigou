@@ -9,7 +9,7 @@
           <div class="list-item-price"><span>￥</span>{{ listItem.price }}</div>
           <div class="list-item-sales">
             <span>销量</span>{{ listItem.sales }}
-            <router-link class="add-cart" to="">
+            <router-link class="add-cart" to="" @click.native.stop="addCartItem(listItem)">
               <Icon type="ios-cart-outline" size="32" color="#8c0776" />
             </router-link>
           </div>
@@ -19,6 +19,8 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
   name: 'ListItem',
   props: ['listItem'],
@@ -27,6 +29,9 @@ export default {
       bordered: false,
       padding: 0
     }
+  },
+  methods: {
+    ...mapMutations(['addCartItem'])
   }
 }
 </script>

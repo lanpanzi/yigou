@@ -20,7 +20,7 @@
             </div>
             <div class="layout-cart">
               <router-link to="/cart">
-                <Badge type="primary" :count="5" :offset="[16, 5]">
+                <Badge type="primary" :count="totalAmount" :offset="[16, 5]" show-zero>
                   <Icon type="ios-cart-outline" size="32" color="#757575" style="font-weight: 600" />
                 </Badge>
               </router-link>
@@ -42,6 +42,7 @@
 
 <script>
 import routes from '../router/routes.js'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'Head',
@@ -55,6 +56,9 @@ export default {
     selectMenuItem(name) {
       this.$router.push({name})
     }
+  },
+  computed: {
+    ...mapGetters(['totalAmount'])
   }
 }
 </script>

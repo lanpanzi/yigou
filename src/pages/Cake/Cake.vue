@@ -27,7 +27,6 @@ export default {
   created() {
     this.$http.getCakeListData()
       .then(res => {
-        console.log(res)
         this.cakeList = res.cakeList
       })
       .catch(error => {
