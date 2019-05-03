@@ -22,7 +22,7 @@
           <Row class="sweetness" type="flex" align="middle">甜度：<Rate :value="productInfo.sweetness" disabled class="sweetness-rate" /></Row>
           <Row class="btn" type="flex" justify="center"> 
             <Col class="addCart" span="8">
-              <Button type="default" :long="true" size="large">加入购物车</Button>
+              <Button type="default" :long="true" size="large" @click.native.stop="addCartItem(productInfo)">加入购物车</Button>
             </Col>
             <Col class="buy" offset="2" span="8">
               <Button type="primary" :long="true" size="large">立即购买</Button>
@@ -64,6 +64,8 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
   name: 'detail',
   data() {
@@ -76,6 +78,7 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['addCartItem']),
     showBigImg(index) {
       this.imgIndex = index
     },
