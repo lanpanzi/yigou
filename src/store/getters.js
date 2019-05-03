@@ -6,16 +6,18 @@ export default {
   totalAmount(state) {
     return state.cart.reduce((result, curr) => {
       if (curr.check) {
-        return result += curr.amount
+        result += curr.amount
       }
+      return result
     }, 0)
   },
   // 所有商品总价
   total(state) {
     return state.cart.reduce((result, curr) => {
       if (curr.check) {
-        return result += curr.price * curr.amount
+        result += curr.price * curr.amount
       }
-    }, 0).toFixed(2)
+      return result
+    }, 0)
   }
 }

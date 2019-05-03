@@ -25,7 +25,7 @@
         <!-- Total -->
         <div class="Cart-Wrap-Total">
           <Row>
-            <Col span="4" style="cursor: pointer">
+            <Col span="4" style="cursor: pointer" @click.native.stop="deleteCartAll">
               <Row type="flex" align="middle">
                 <Col><Icon type="ios-trash" size="28" color="#000" /></Col>
                 <Col><span>全部清除</span></Col>
@@ -34,11 +34,11 @@
             <Col offset="16" span="4">
               <Row class="total-product" type="flex" justify="space-between" align="middle">
                 <Col>商品总计</Col>
-                <Col><span>￥</span>{{ total }}</Col>
+                <Col><span>￥</span>{{ total | moneyFormat }}</Col>
               </Row>
               <Row class="total-payment" type="flex" justify="space-between" align="middle">
                 <Col>应付总额</Col>
-                <Col style="font-weight: 600;font-size: 18px"><span>￥</span>{{ total }}</Col>
+                <Col style="font-weight: 600;font-size: 18px"><span>￥</span>{{ total | moneyFormat }}</Col>
               </Row>
             </Col>
           </Row>
@@ -47,7 +47,7 @@
         <div class="Cart-Wrap-Button">
           <Row>
             <Col offset="15" span="4"><Button style="font-size: 18px;color: #000" long>继续购物</Button></Col>
-            <Col offset="1" span="4"><Button style="font-size: 18px" type="primary" long>下单结算</Button></Col>
+            <Col offset="1" span="4"><Button style="font-size: 18px" type="primary" long @click.native.stop="placeOrder">下单结算</Button></Col>
           </Row>
         </div>
       </div>
@@ -96,7 +96,10 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['changeCheckAll'])
+    ...mapMutations(['changeCheckAll', 'deleteCartAll']),
+    placeOrder() {
+      this.$router.push('order')
+    }
   },
   computed: {
     ...mapState(['cart', 'checkAll']),

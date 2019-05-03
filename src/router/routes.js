@@ -1,7 +1,8 @@
 import Head from '@/components/Head.vue'
 import Foot from '@/components/Foot.vue'
 import Detail from '@/components/Detail.vue'
-// 按需加载
+
+// 路由懒加载，通常我们将页面级的组件实现分片打包
 const Home = () => 
   import('@/pages/Home/Home.vue')
 const Cake = () => 
@@ -20,6 +21,8 @@ const Login = () =>
   import('@/pages/Login/Login.vue')
 const Register = () =>
   import('@/pages/Register/Register.vue')
+const Order = () => 
+  import('@/pages/Order/Order.vue')
 
 const routes =  [
   { 
@@ -153,6 +156,19 @@ const routes =  [
     },
     meta: {
       isNav: false
+    }
+  },
+  {
+    path: '/order',
+    name: 'order',
+    components: {
+      head: Head,
+      main: Order,
+      foot: Foot
+    },
+    meta: {
+      isNav: false,
+      isAuthCheck: true
     }
   }
 ]

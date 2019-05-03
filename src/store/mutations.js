@@ -41,14 +41,15 @@ export default {
   // 删除商品
   deleteCartItem(state, id) {
     state.cart = state.cart.filter(curr => curr.id !== id)
+    state.checkAll = state.cart.every(curr => curr.check === true)
   },
   // 全选
   changeCheckAll(state) {
-    state.checkAll = !state.checkAll
     state.cart = state.cart.filter(curr => {
       curr.check = !curr.check
       return true
     })
+    state.checkAll = state.cart.every(curr => curr.check === true)
   },
   // 单选
   changeCheck(state, id) {
@@ -58,5 +59,13 @@ export default {
       return true
     })
     state.checkAll = state.cart.every(curr => curr.check === true)
+  },
+  // 全部清除
+  deleteCartAll(state) {
+    state.cart = []
+  },
+  // 修改登录状态
+  modifyLoginState(state, isLogin) {
+    state.isLogin = isLogin
   }
 }

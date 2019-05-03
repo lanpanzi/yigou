@@ -9,13 +9,13 @@
           <div class="form-box">
             <Form ref="formInline" :model="formDate" :rules="ruleInline">
               <FormItem prop="username">
-                  <Input type="text" v-model="formDate.username" clearable placeholder="请输入您的账号"></Input>
+                  <Input type="text" v-model="formDate.username" clearable placeholder="输入用户名"></Input>
               </FormItem>
               <FormItem prop="password">
                   <Input type="password" v-model="formDate.password" clearable placeholder="输入密码"></Input>
               </FormItem>
               <FormItem>
-                  <Button type="primary" long>登录</Button>
+                  <Button type="primary" long @click="login('formInline')">登录</Button>
               </FormItem>
               <FormItem>
                 <Row>
@@ -37,6 +37,8 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
   name: 'login',
   data() {
@@ -57,7 +59,45 @@ export default {
     }
   },
   methods: {
-    
+    ...mapMutations(['modifyLoginState']),
+    loginRequest() {
+      this.$http.postLogin(this.formDate)
+        .then(res => {
+          if (res) {
+            // 登录成功
+            this.$Message.success({
+              content: '登录成功',
+              duration: 6
+            })
+            this.modifyLoginState(true)
+            window.localStorage.setItem('loginUsername', res.username)
+            window.localStorage.setItem('token', res.token)
+            this.$router.push({name: this.$route.params.from.name})
+          } else{
+            this.$Message.error({
+              content: '用户名或密码错误',
+              duration: 6
+            })
+            this.modifyLoginState(false)
+          }
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+    login(name) {
+      // 登录
+      this.$refs[name].validate((valid) => {
+        if (valid) {
+          this.loginRequest()
+        } else{
+          this.$Message.error({
+            content: '请填写正确的用户名或密码',
+            duration: 6
+          })
+        }
+      })
+    }
   }
 }
 </script>

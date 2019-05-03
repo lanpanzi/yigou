@@ -17,6 +17,36 @@ Vue.use(iView)
 
 Vue.config.productionTip = false
 
+// 全局导航守卫
+router.beforeEach((to, from, next) => {
+  if (to.meta.isAuthCheck) {
+    // 需要有权限才能查看的
+    // 判断用户是否登录
+    if (store.state.isLogin) {
+      // 已登录
+      next()
+    } else{
+      next({
+        name: "login",
+        params: {
+          from: to
+        }
+      })
+    }
+  } else{
+    next()
+  }
+})
+
+// 全局Mixin
+Vue.mixin({
+  filters: {
+    moneyFormat(v) {
+      return Number(v).toFixed(2)
+    }
+  }
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

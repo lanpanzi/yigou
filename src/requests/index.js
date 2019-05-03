@@ -108,3 +108,7 @@ export const getProductEvaluationData = (id) => {
 export const getCartRecommendationData = () => {
   return ajax.get('/api/v1/recommendation')
 }
+// 用户登录
+export const postLogin = (userInfo) => {
+  return ajax.post('/api/v1/login', userInfo)
+}

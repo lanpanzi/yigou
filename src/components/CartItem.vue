@@ -20,7 +20,7 @@
           </Col>
         </Row>
       </Col>
-      <Col span="1" class="subTotal"><span>￥</span>{{ subTotal }}</Col> 
+      <Col span="1" class="subTotal"><span>￥</span>{{ subTotal | moneyFormat }}</Col> 
       <Col span="1" style="cursor: pointer">
         <Icon type="ios-close-circle-outline" size="24" color="#000" @click.native.stop="deleteCartItem(cartItem.id)" />
       </Col>
@@ -50,7 +50,7 @@ export default {
   },
   computed: {
     subTotal() {
-      return (this.cartItem.price * this.cartItem.amount).toFixed(2)
+      return (this.cartItem.price * this.cartItem.amount)
     }
   }
 }
