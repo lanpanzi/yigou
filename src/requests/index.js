@@ -1,11 +1,7 @@
 import axios from 'axios'
 import { Spin, Message  } from 'iview'
 
-
-const isdev = process.env.NODE_ENV === "development"
-const ajax = axios.create({
-  baseURL: isdev ? 'http://rap2api.taobao.org/app/mock/165295' : ''
-})
+const ajax = axios.create()
 
 // 添加一个请求拦截器
 ajax.interceptors.request.use(config => {
@@ -46,69 +42,73 @@ ajax.interceptors.response.use(res => {
 
 // 获取首页轮播图数据
 export const getCarouselData = () => {
-  return ajax.get('/api/v1/carousel')
+  return ajax.get('/api/v1/carousel.php')
 }
 // 获取首页活动数据
 export const getActivityData = () => {
-  return ajax.get('/api/v1/activity')
+  return ajax.get('/api/v1/activity.php')
 }
 // 获取首页广告数据
 export const getBannerData = () => {
-  return ajax.get('/api/v1/banner')
+  return ajax.get('/api/v1/banner.php')
 }
 // 获取首页列表标题数据
 export const getListTopData = () => {
-  return ajax.get('/api/v1/listTop')
+  return ajax.get('/api/v1/listTop.php')
 }
 // 获取首页匠心·原创数据
 export const getOriginalData = () => {
-  return ajax.get('/api/v1/original')
+  return ajax.get('/api/v1/original.php')
 }
 // 获取首页贝式·严选数据
 export const getStrictData = () => {
-  return ajax.get('/api/v1/strict')
+  return ajax.get('/api/v1/strict.php')
 }
 // 获取首页网红爆款数据
 export const getHotData = () => {
-  return ajax.get('/api/v1/hot')
+  return ajax.get('/api/v1/hot.php')
 }
 // 获取首页猜您喜欢数据
 export const getLoveData = () => {
-  return ajax.get('/api/v1/love')
+  return ajax.get('/api/v1/love.php')
 }
 // 获取蛋糕商品列表数据
 export const getCakeListData = () => {
-  return ajax.get('/api/v1/cakeList')
+  return ajax.get('/api/v1/cakeList.php')
 }
 // 获取面包商品列表数据
 export const getBreadListData = () => {
-  return ajax.get('/api/v1/breadList')
+  return ajax.get('/api/v1/breadList.php')
 }
 // 获取冰淇淋商品列表数据
 export const getIceCreamListData = () => {
-  return ajax.get('/api/v1/iceCreamList')
+  return ajax.get('/api/v1/iceCreamList.php')
 }
 // 获取咖啡下午茶商品列表数据
 export const getTeaListData = () => {
-  return ajax.get('/api/v1/teaList')
+  return ajax.get('/api/v1/teaList.php')
 }
 // 获取详情商品信息数据
 export const getProductInfoData = (id) => {
-  return ajax.get('/api/v1/productInfo?productID='+ id)
+  return ajax.get('/api/v1/productInfo.php?productID='+ id)
 }
 // 获取详情商品详情数据
 export const getProductDetailData = (id) => {
-  return ajax.get('/api/v1/productDetail?productID='+ id)
+  return ajax.get('/api/v1/productDetail.php?productID='+ id)
 }
 // 获取详情商品评价数据
 export const getProductEvaluationData = (id) => {
-  return ajax.get('/api/v1/productEvaluation?productID='+ id)
+  return ajax.get('/api/v1/productEvaluation.php?productID='+ id)
 }
 // 购物车热销商品推荐数据
 export const getCartRecommendationData = () => {
-  return ajax.get('/api/v1/recommendation')
+  return ajax.get('/api/v1/recommendation.php')
 }
 // 用户登录
 export const postLogin = (userInfo) => {
-  return ajax.post('/api/v1/login', userInfo)
+  return ajax.post('/api/v1/login.php', userInfo)
+}
+// 用户注册
+export const postRegister = (userInfo) => {
+  return ajax.post('/api/v1/register.php', userInfo)
 }

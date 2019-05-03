@@ -8,8 +8,8 @@
           </div>
           <div class="form-box">
             <Form ref="formInline" :model="formValidate" :rules="ruleValidate">
-              <FormItem prop="phone">
-                  <Input type="text" v-model="formValidate.phone" clearable placeholder="请输入你的手机号"></Input>
+              <FormItem prop="username">
+                  <Input type="text" v-model="formValidate.username" clearable placeholder="请输入你的手机号"></Input>
               </FormItem>
               <FormItem prop="password">
                   <Input type="password" v-model="formValidate.password" clearable placeholder="请输入你输入密码"></Input>
@@ -23,7 +23,7 @@
                 </Input>  
               </FormItem>
               <FormItem>
-                  <Button type="primary" long>注册</Button>
+                  <Button type="primary" long @click.native.stop="register('formInline')">注册</Button>
               </FormItem>
               <FormItem>
                 <Row type="flex" justify="center">
@@ -55,13 +55,13 @@ export default {
 
     return {
       formValidate: {
-        phone: '',
+        username: '',
         password: '',
         repassword: '',
         checkNum: ''
       },
       ruleValidate: {
-        phone: [
+        username: [
           { required: true, message: '手机号不能为空', trigger: 'blur' },
           { type: 'string', pattern: /^1[3|4|5|7|8][0-9]{9}$/, message: '请输入正确的手机号', trigger: 'blur' }
         ],
@@ -81,7 +81,7 @@ export default {
   },
   methods: {
     getcheckNum () {
-      if (this.formValidate.phone.length === 11) {
+      if (this.formValidate.username.length === 11) {
         this.$Message.success({
           content: '验证码为: 1234',
           duration: 6,
@@ -94,6 +94,45 @@ export default {
           closable: true
         })
       }
+    },
+    registerRequest() {
+      const { 
+        username, 
+        password
+      } = this.formValidate
+
+      this.$http.postRegister({ username, password })
+        .then(res => {
+          if (res) {
+            // 注册成功
+            this.$Message.success({
+              content: '注册成功',
+              duration: 6
+            })
+            console.log(res)
+          } else{
+            // 注册失败
+            this.$Message.error({
+              content: '手机号已被注册',
+              duration: 6
+            })
+          }
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+    register(name) {
+      this.$refs[name].validate((valid) => {
+        if (valid) {
+          this.registerRequest()
+        } else{
+          this.$Message.error({
+            content: '请填写正确的注册信息',
+            duration: 6
+          })
+        }
+      })
     }
   }
 }
