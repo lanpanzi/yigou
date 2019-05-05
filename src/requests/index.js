@@ -29,7 +29,7 @@ ajax.interceptors.request.use(config => {
 ajax.interceptors.response.use(res => {
   // 对响应数据做些什么
   Spin.hide()
-  if (res.data.res_code === 200) {
+  if (res.data.res_code === 1) {
     return res.data.res_body
   } else{
     Message.info('数据请求超时')
