@@ -13,7 +13,7 @@ module.exports = {
     proxyTable: {
       // 反向代理
       '/api': {
-        target: 'http://rap2api.taobao.org/app/mock/165295/',
+        target: 'http://localhost/api/',
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''

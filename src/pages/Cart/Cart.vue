@@ -60,7 +60,7 @@
           <Col>你的购物车里还没有商品</Col>
         </Row>
         <Row type="flex" justify="center" align="middle" class="Cart-Wrap-Empty-ToShop">
-          <Col><router-link to="/cake">去购物>></router-link></Col>
+          <Col><router-link to="/home">去购物>></router-link></Col>
         </Row>
       </div>
       <!-- Recommendation -->

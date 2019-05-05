@@ -10,7 +10,7 @@
           <div class="list-item-sales">
             <span>销量</span>{{ listItem.sales }}
             <router-link class="add-cart" to="" @click.native.stop="addCartItem(listItem)">
-              <Icon type="ios-cart-outline" size="32" color="#8c0776" />
+              <Icon type="ios-cart-outline" size="32" color="#26cad3" />
             </router-link>
           </div>
         </div>
